@@ -37,10 +37,6 @@ const EditRecipePage = () => {
     updateRecipe()
   }
 
-  const handleCancel = () => {
-    console.log('move to HomePage');
-  }
-
   return (
     <>
       <div>EditRecipePage</div>
@@ -83,7 +79,7 @@ const EditRecipePage = () => {
         <Button type="submit" variant='secondary'>
           Update
         </Button>
-        <Button element='link' variant='primary' onClick={handleCancel} href={'/'}>
+        <Button variant='primary' onClick={() => navigate(-1)}>
           Cancel
         </Button>
       </form>

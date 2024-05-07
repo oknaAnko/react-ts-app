@@ -33,9 +33,12 @@ const HomePage = () => {
   return (
     <>
       <div>HomePage</div>
+      <Button variant='primary' onClick={() => navigate('/new')}>
+        Create
+      </Button>
       {recipes.map(recipe => (
         <>
-          <Button element='link' variant='primary' onClick={() => navigate(`/recipes/${recipe._id}`)} >
+          <Button variant='primary' onClick={() => navigate(`/recipes/${recipe._id}`)} >
             {recipe.title}
           </Button>
           <p>{recipe.time}</p>

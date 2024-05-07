@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
 import axios from "axios";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../shared/Button';
 import { Recipe } from '../types';
 
 const CreateRecipePage = () => {
-
+  const navigate = useNavigate();
   const [newRecipe, setNewRecipe] = useState<Recipe>({
     title: '',
     time: '',
@@ -12,8 +13,6 @@ const CreateRecipePage = () => {
     category: '',
     description: ''
   })
-
-  console.log('newRecipe', newRecipe);
 
   const headerConfig = {
     headers: {
@@ -24,8 +23,8 @@ const CreateRecipePage = () => {
   const addRecipe = () => {
     axios.post('http://localhost:3033/recipes', newRecipe, headerConfig)
       .then(res => {
-        console.log('res', res.data)
-        // TODO: redirect & show success message
+        navigate(res.data.redirectUrl)
+        // TODO:show success message
       })
       .catch(function (error) {
         console.log(error);
@@ -37,10 +36,6 @@ const CreateRecipePage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addRecipe()
-  }
-
-  const handleCancel = () => {
-    console.log('move to HomePage');
   }
 
   return (
@@ -80,7 +75,7 @@ const CreateRecipePage = () => {
         <Button type="submit" variant='secondary'>
           Create
         </Button>
-        <Button element='link' variant='primary' onClick={handleCancel} href={'/'}>
+        <Button variant='primary' onClick={() => navigate(-1)}>
           Cancel
         </Button>
       </form>
