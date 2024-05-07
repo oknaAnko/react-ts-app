@@ -17,3 +17,11 @@ a {
   margin: 0 auto;
   background-color: $light-pink;
 }
+
+.button {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
